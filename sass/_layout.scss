@@ -1,0 +1,114 @@
+@use "sass:color"; // Para usar color.adjust correctamente
+@use 'variables' as *;
+@use 'base' as *; // Para acceder a mixins como transition
+
+// 🌟 Estilo base para todos los hero
+.hero {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $color-surface;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1, h2 {
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-family: $font-body;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: $color-surface;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    h1, h2 { font-size: 2rem; }
+    p { font-size: 1rem; }
+  }
+}
+
+// 🎯 Clases hero con fondo único
+.hero-inicio {
+  background-image: url('../img/index-bg.jpg');
+}
+
+.hero-nosotras {
+  background-image: linear-gradient(rgba(210, 154, 197, 0.75), rgba(210, 154, 197, 0.75)), url('../img/fondo-nosotras.jpg');
+}
+
+.hero-servicios {
+  background-image: linear-gradient(rgba(170, 140, 233, 0.75), rgba(170, 140, 233, 0.75)), url('../img/fondo-servicios.jpg');
+}
+
+.hero-testimonios {
+  background-image: linear-gradient(rgba(140, 176, 233, 0.75), rgba(140, 176, 233, 0.75)), url('../img/fondo-testimonios.jpg');
+}
+
+.hero-contacto {
+  background-image: linear-gradient(rgba(100, 100, 180, 0.75), rgba(100, 100, 180, 0.75)), url('../img/fondo-contacto.jpg');
+}
+
+// 🌸 Sección clara reutilizable
+.seccion-clara {
+  background-color: $color-bg-light;
+  color: $color-text-dark;
+  padding: $padding-section;
+  @include transition();
+
+  h2, h5, p {
+    color: $color-text-dark;
+  }
+
+  .btn-primario {
+    background-color: $color-principal;
+    color: $color-surface;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    @include transition();
+
+    &:hover {
+      background-color: $color-principal-hover;
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: 2px solid #7e57c2;
+      outline-offset: 4px;
+    }
+  }
+
+  &:hover {
+    background-color: color.adjust($color-bg-light, $lightness: -2%);
+  }
+}
